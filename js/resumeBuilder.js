@@ -1,8 +1,8 @@
 // header code
 var name = "Renee Stokes";
-var role = "Front End Web Developer";
-
 var formattedName = HTMLheaderName.replace("%data%", name);
+
+var role = "Front End Web Developer";
 var formattedRole = HTMLheaderRole.replace("%data%", role);
 
 $("#header").prepend(formattedRole);
@@ -12,7 +12,7 @@ var bio = {
 	"name" : "Renee Stokes",
 	"role" : "Front End Web Developer",
 	"contactInfo" : {
-		"mobile": "0481-568-843",
+		"mobile" : "0481568843",
 		"email" : "stokesrenee@gmail.com",
 		"github" : "stokesrenee",
 		"twitter" : "@stokesrenee",
@@ -22,19 +22,27 @@ var bio = {
 	"skills" : [
 		"HTML", "CSS", "JavaScript"
 		],
-	"bioPic" : "images/" //need to add an image in here
+	"bioPic" : "images/biopic.jpg"
 };
 
-$("#main").append(bio.name);
-$("#main").append(bio.role);
-$("#main").append(bio.contactInfo.mobile);
-$("#main").append(bio.contactInfo.email);
-$("#main").append(bio.contactInfo.github);
-$("#main").append(bio.contactInfo.twitter);
-$("#main").append(bio.contactInfo.location);
-$("#main").append(bio.welcomeMessage);
-$("#main").append(bio.skills);
-$("#main").append(bio.bioPic);
+var formattedMobile = HTMLmobile.replace("%data%", bio.contactInfo.mobile);
+var formattedEmail = HTMLemail.replace("%data%", bio.contactInfo.email);
+var formattedGithub = HTMLgithub.replace("%data%", bio.contactInfo.github);
+var formattedTwitter = HTMLtwitter.replace("%data%", bio.contactInfo.twitter);
+var formattedLocation = HTMLlocation.replace("%data%", bio.contactInfo.location);
+var formattedWelcomeMessage = HTMLWelcomeMsg.replace("%data%", bio.welcomeMessage);
+var formattedSkills = HTMLskills.replace("%data%", bio.skills);
+var formattedBioPic = HTMLbioPic.replace("%data%", bio.bioPic);
+
+$("#header").append(formattedMobile);
+$("#header").append(formattedEmail);
+$("#header").append(formattedGithub);
+$("#header").append(formattedTwitter);
+$("#header").append(formattedLocation);
+$("#header").append(formattedWelcomeMessage);
+$("#header").append(HTMLskillsStart);
+$("#header").append(formattedSkills);
+$("#header").append(formattedBioPic);
 
 var education = {
 	"universities": [
@@ -73,17 +81,3 @@ var work = {
 	"location" : "Perth, Australia",
 	"dates" : "2012 - 2015"
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
