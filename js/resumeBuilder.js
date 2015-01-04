@@ -53,24 +53,24 @@ if (bio.skills.length > 0) {
     }
 
 var education = {
-    "schools": [
-        {
-            "name" : "Murdoch University",
-            "location" : "Perth, Australia",
-            "degree" : "Bachelor of Arts",
-            "majors" : [
-                "Psychology", "Education"
-            ],
-            "dates" : "1998",
-            "url" : "http://www.murdoch.edu.au"
-        },
+    "school": [
         {
             "name" : "Curtin University",
             "location" : "Perth, Australia",
             "degree" : "Graduate Diploma",
             "majors" : "Information Science",
-            "dates" : "2012",
+            "dates" : "2011-2012",
             "url" : "http://www.curtin.edu.au"
+        },
+        {
+            "name" : "Murdoch University",
+            "location" : "Perth, Australia",
+            "degree" : "Bachelor of Arts",
+            "majors" : [
+                "Psychology", " Education"
+            ],
+            "dates" : "1995-1998",
+            "url" : "http://www.murdoch.edu.au"
         }
     ],
     "onlineCourses": [
@@ -79,22 +79,29 @@ var education = {
             "courseProvider" : "Udacity",
             "dates" : 2015,
             "url" : "http://www.udacity.com"
-        },
-    ],
+        }
+    ]
 };
 
-var formattedName = HTMLschoolName.replace("%data%", education.schools.name);
-var formattedLocation = HTMLschoolLocation.replace("%data%", education.schools.location);
-var formattedDegree = HTMLschoolDegree.replace("%data%", education.schools.degree);
-var formattedMajors = HTMLschoolMajor.replace("%data%", education.schools.majors);
-var formattedDates = HTMLschoolDates.replace("%data%", education.schools.dates);
+function displayEducation () {
+    for (school in education.school) {
+        $("#education").append(HTMLschoolStart);
 
-$("#education").append(HTMLschoolStart);
-$("#education").append(formattedName);
-$("#education").append(formattedLocation);
-$("#education").append(formattedDegree);
-$("#education").append(formattedMajors);
-$("#education").append(formattedDates);
+var formattedName = HTMLschoolName.replace("%data%", education.school[school].name);
+var formattedDates = HTMLschoolDates.replace("%data%", education.school[school].dates);
+var formattedLocation = HTMLschoolLocation.replace("%data%", education.school[school].location);
+var formattedDegree = HTMLschoolDegree.replace("%data%", education.school[school].degree);
+var formattedMajors = HTMLschoolMajor.replace("%data%", education.school[school].majors);
+
+
+$(".education-entry:last").append(formattedName + formattedDegree);
+$(".education-entry:last").append(formattedDates);
+$(".education-entry:last").append(formattedLocation);
+$(".education-entry:last").append(formattedMajors);
+    }
+}
+
+displayEducation ();
 
 var work = {
     "jobs" : [
@@ -103,9 +110,9 @@ var work = {
         "title" : "Campus Librarian",
         "location" : "Perth, Australia",
         "dates" : "2012 - 2015",
-        "description" : "I am currently managing the Perth branch of the Endeavour College Library"
-        },
-    ],
+        "description" : "I am currently managing the Perth branch of the Endeavour College Library."
+        }
+    ]
 };
 
 function displayWork () {
