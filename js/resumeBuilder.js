@@ -58,6 +58,7 @@ var education = {
             "name" : "Inspire Education",
             "location" : "Perth, Australia",
             "degree" : "Certificate IV in Training and Assessment",
+            "majors" : "Teaching (Adults)",
             "dates" : "2014",
             "url" : "http://www.inspireeducation.net.au"
         },
@@ -144,6 +145,7 @@ displayEducation ();
 
 function displayOnlineCourses () {
 	for (course in education.onlineCourses) {
+		//Need to work out how to display online courses title
 
 var formattedSchool = HTMLonlineSchool.replace("%data%", education.onlineCourses[course].school);
 var formattedTitle = HTMLonlineTitle.replace("%data%", education.onlineCourses[course].title);
@@ -157,7 +159,7 @@ $(".education-entry:last").append("<br><div><hr class='section-hr'></div>");
     }
 }
 
-	displayOnlineCourses ();
+displayOnlineCourses ();
 
 var work = {
     "jobs" : [
@@ -241,6 +243,31 @@ function displayWork () {
 
 displayWork ();
 
+var project = {
+  "projects": [
+	{
+        "title": "Mock-Up",
+        "dates": "2014",
+        "description": ["Provided with a design mockup as a PDF-file, I replicated that design in HTML and CSS."],
+        "image": "images/mock.png"
+  }],
+
+  display: function() {
+    for (var pro in project.projects) {
+      $("#projects").append(HTMLprojectStart);
+      var formattedTitle = HTMLprojectTitle.replace("%data%", project.projects[pro].title);
+      formattedTitle = formattedTitle.replace("%url%", project.projects[pro].url);
+      var formattedDates = HTMLprojectDates.replace("%data%", project.projects[pro].dates);
+      var formattedDescription = HTMLprojectDescription.replace("%data%", project.projects[pro].description);
+      var formattedImage = HTMLprojectImage.replace("%data%", project.projects[pro].image);
+      $(".project-entry:last").append(formattedTitle + formattedDates + formattedDescription + formattedImage);
+    }
+  }
+};
+
+project.display ();
+
+/* Internationalize button
 
 $("#main").append(internationalizeButton);
 var inName = function(_name) {
@@ -250,5 +277,7 @@ var inName = function(_name) {
     var internationalName = firstName + " " + lastName;
     return internationalName;
 };
+
+*/
 
 
