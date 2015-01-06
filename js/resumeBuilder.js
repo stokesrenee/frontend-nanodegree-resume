@@ -1,5 +1,5 @@
 // header code
-var name = "Renee Stokes";
+/*var name = "Renee Stokes";
 var formattedName = HTMLheaderName.replace("%data%", name);
 
 var role = "Front End Web Developer";
@@ -11,6 +11,7 @@ $("#header").prepend(formattedName);
 var bio = {
     "name" : "Renee Stokes",
     "role" : "Front End Web Developer",
+    "welcomeMessage" : "Welcome to my resume online!",
     "contactInfo" : {
         "mobile" : "0481568843",
         "email" : "stokesrenee@gmail.com",
@@ -18,13 +19,14 @@ var bio = {
         "twitter" : "@stokesrenee",
         "location" : "Perth, Australia"
     },
-    "welcomeMessage" : "Welcome to my resume online!",
     "skills" : [
         "HTML", "CSS", "JavaScript"
     ],
     "bioPic" : "images/biopic.jpg"
 };
 
+var formattedName = HTMLheaderName.replace("%data%", name);
+var formattedRole = HTMLheaderRole.replace("%data%", role);
 var formattedMobile = HTMLmobile.replace("%data%", bio.contactInfo.mobile);
 var formattedEmail = HTMLemail.replace("%data%", bio.contactInfo.email);
 var formattedGithub = HTMLgithub.replace("%data%", bio.contactInfo.github);
@@ -34,6 +36,8 @@ var formattedWelcomeMessage = HTMLWelcomeMsg.replace("%data%", bio.welcomeMessag
 var formattedSkills = HTMLskills.replace("%data%", bio.skills);
 var formattedBioPic = HTMLbioPic.replace("%data%", bio.bioPic);
 
+$("#header").prepend(formattedRole);
+$("#header").prepend(formattedName);
 $("#header").append(formattedMobile);
 $("#header").append(formattedEmail);
 $("#header").append(formattedGithub);
@@ -51,6 +55,49 @@ if (bio.skills.length > 0) {
     formattedSkill = HTMLskills.replace("%data%", bio.skills[2]);
     $("#skills").append(formattedSkill);
     }
+*/
+
+var bio = {
+  "name": "Renee Stokes",
+  "role": "Front End Web Developer",
+  "welcomeMessage": "Welcome to my online resume",
+  "contacts": {
+    "mobile": "0481568843",
+    "email": "stokesrenee@gmail.com",
+    "github": "stokesrenee",
+    "twitter": "@stokesrenee",
+    "location": "Perth, Australia"
+  },
+  "bioPic": "images/biopic.jpg",
+  "skills": ["HTML", "CSS", "JavaScript"],
+
+  display: function() {
+    var formattedName = HTMLheaderName.replace("%data%", bio.name);
+    var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
+
+    var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
+    var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
+    var formattedGitHub = HTMLgithub.replace("%data%", bio.contacts.github);
+    var formattedTwitter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
+    var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
+
+    var formattedBioPic = HTMLbioPic.replace("%data%", bio.bioPic);
+    var formattedWelcomeMsg = HTMLWelcomeMsg.replace("%data%", bio.welcomeMessage);
+
+    $("#header").prepend(formattedName + formattedRole);
+    $("#topContacts").append(formattedMobile + formattedEmail + formattedGitHub + formattedTwitter + formattedLocation);
+    $("#footerContacts").append(formattedMobile + formattedEmail + formattedGitHub + formattedTwitter + formattedLocation);
+    $("#header").append(formattedBioPic);
+    $("#header").append(formattedWelcomeMsg);
+    $("#header").append(HTMLskillsStart);
+    for (var skills in bio.skills) {
+      var formattedSkill = HTMLskills.replace("%data%", bio.skills[skills]);
+      $("#skills").append(formattedSkill);
+    }
+  }
+};
+
+bio.display();
 
 var education = {
     "school": [
@@ -95,30 +142,6 @@ var education = {
             "school" : "Udacity",
             "dates" : 2015,
             "url" : "http://www.udacity.com"
-        },
-        {
-            "title": "Intro to Computer Science",
-            "school": "Udacity",
-            "dates": "2015",
-            "url": "https://www.udacity.com/course/cs101"
-        },
-        {
-            "title": "Intro to HTML and CSS",
-            "school": "Udacity",
-            "dates": "2015",
-            "url": "https://www.udacity.com/course/ud304"
-        },
-        {
-            "title": "Version Control with Git and GitHub",
-            "school": "Udacity",
-            "dates": "2015",
-            "url": "https://www.udacity.com/course/ud775"
-        },
-        {
-            "title": "JavaScript Basics",
-            "school": "Udacity",
-            "dates": "2015",
-            "url": "https://www.udacity.com/course/ud804"
         }
     ]
 };
@@ -127,17 +150,17 @@ function displayEducation () {
     for (school in education.school) {
         $("#education").append(HTMLschoolStart);
 
-var formattedName = HTMLschoolName.replace("%data%", education.school[school].name);
-var formattedDates = HTMLschoolDates.replace("%data%", education.school[school].dates);
-var formattedLocation = HTMLschoolLocation.replace("%data%", education.school[school].location);
-var formattedDegree = HTMLschoolDegree.replace("%data%", education.school[school].degree);
-var formattedMajors = HTMLschoolMajor.replace("%data%", education.school[school].majors);
+	var formattedName = HTMLschoolName.replace("%data%", education.school[school].name);
+	var formattedDates = HTMLschoolDates.replace("%data%", education.school[school].dates);
+	var formattedLocation = HTMLschoolLocation.replace("%data%", education.school[school].location);
+	var formattedDegree = HTMLschoolDegree.replace("%data%", education.school[school].degree);
+	var formattedMajors = HTMLschoolMajor.replace("%data%", education.school[school].majors);
 
 
-$(".education-entry:last").append(formattedName + formattedDegree);
-$(".education-entry:last").append(formattedDates);
-$(".education-entry:last").append(formattedLocation);
-$(".education-entry:last").append(formattedMajors);
+	$(".education-entry:last").append(formattedName + formattedDegree);
+	$(".education-entry:last").append(formattedDates);
+	$(".education-entry:last").append(formattedLocation);
+	$(".education-entry:last").append(formattedMajors);
     }
 }
 
@@ -145,17 +168,17 @@ displayEducation ();
 
 function displayOnlineCourses () {
 	for (course in education.onlineCourses) {
-		//Need to work out how to display online courses title
 
-var formattedSchool = HTMLonlineSchool.replace("%data%", education.onlineCourses[course].school);
-var formattedTitle = HTMLonlineTitle.replace("%data%", education.onlineCourses[course].title);
-var formattedURL = HTMLonlineURL.replace("%data%", education.onlineCourses[course].url);
-var formattedDates = HTMLonlineDates.replace("%data%", education.onlineCourses[course].dates);
 
-$(".education-entry:last").append(formattedTitle + formattedSchool);
-$(".education-entry:last").append(formattedDates);
-$(".education-entry:last").append(formattedURL);
-$(".education-entry:last").append("<br><div><hr class='section-hr'></div>");
+	var formattedSchool = HTMLonlineSchool.replace("%data%", education.onlineCourses[course].school);
+	var formattedTitle = HTMLonlineTitle.replace("%data%", education.onlineCourses[course].title);
+	var formattedURL = HTMLonlineURL.replace("%data%", education.onlineCourses[course].url);
+	var formattedDates = HTMLonlineDates.replace("%data%", education.onlineCourses[course].dates);
+
+	$("#education").append(HTMLonlineClasses);
+	$(".education-entry:last").append(formattedTitle + formattedSchool);
+	$(".education-entry:last").append(formattedDates);
+	$(".education-entry:last").append(formattedURL);
     }
 }
 
@@ -208,7 +231,8 @@ var work = {
     ]
 };
 
-function locationizer(work_obj) {
+
+/* function locationizer(work_obj) {
 	var locationArray = [];
 
 	for (job in work_obj.jobs) {
@@ -220,6 +244,8 @@ function locationizer(work_obj) {
 }
 
 console.log(locationizer(work));
+
+*/
 
 function displayWork () {
     for (job in work.jobs) {
@@ -267,6 +293,8 @@ var project = {
 
 project.display ();
 
+$("#mapDiv").append(googleMap);
+
 /* Internationalize button
 
 $("#main").append(internationalizeButton);
@@ -279,5 +307,7 @@ var inName = function(_name) {
 };
 
 */
+
+
 
 
